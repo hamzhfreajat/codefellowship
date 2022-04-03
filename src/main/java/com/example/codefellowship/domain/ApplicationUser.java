@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
+
 @Setter
 @Getter
 @Entity
@@ -24,6 +26,9 @@ public class ApplicationUser implements UserDetails {
     private String lastName ;
     private String dateOfBirth;
     private String bio ;
+    @OneToMany(mappedBy = "user")
+    private Set<Posts> posts;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -36,7 +41,7 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return password;
+        return username;
     }
 
     @Override

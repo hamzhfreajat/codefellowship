@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:fragment="header">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm navbar-dark  pmd-navbar pmd-z-depth">
+            <button class="navbar-toggler pmd-navbar-toggle" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">Bolgger</a>
+
+            <div class="collapse navbar-collapse pmd-navbar-sidebar" id="navbarSupportedContent">
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link pmd-ripple-effect" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Users</a>
+                    </li>
+                </ul>
+                <div class="ml-auto">
+                    <div sec:authorize="isAnonymous()">
+                        <div class="user-auth">
+                            <a th:href="@{/login}" class="text-white">Login</a>
+                            <a th:href="@{/signup}" class="text-white">SignUp</a>
+                        </div>
+                    </div>
+                    <div sec:authorize="isAuthenticated()">
+                        <div class="dropdown pmd-dropdown pmd-user-info">
+                            <a href="#" class="btn-user dropdown-toggle media align-items-center" data-toggle="dropdown" data-sidebar="true" aria-expanded="false">
+                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle mr-2" style="width: 35px;" alt="Avatar" />
+                                <div class="media-body">
+                                    <span th:text="${username}"></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                <a class="dropdown-item" href="/myprofile">Profile</a>
+                                <a class="dropdown-item" href="/preform_logout">Logout</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<footer th:fragment="footer">
+        <!-- Nav menu with side menu -->
+        <nav class="navbar navbar-expand-sm navbar-dark pmd-navbar pmd-z-depth fix-bottom ">
+            <div class="container-fluid d-flex justify-content-between align-items-center">
+
+                <button class="navbar-toggler pmd-navbar-toggle" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#">Blogger</a>
+                <div class="text-center text-white">
+                    <p class="m-0">&copy; 2022 Hamzh</p>
+                </div>
+                <div></div>
+            </div>
+        </nav>
+</footer>
+
+</body>
+</html>
