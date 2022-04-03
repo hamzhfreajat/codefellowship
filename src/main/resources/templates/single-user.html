@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="common/layout :: header"></header>
+<main>
+    <div >
+        <div class="row">
+            <section id="my-info-section" class="sidebar col-3">
+                <div class="my-info sidebar-section">
+                    <div class="my-top-info mt-3">
+                        <div class="my-info-title sidebar-title">
+                            <h5>Users Information</h5>
+                        </div>
+                        <div class="my-info-details">
+                            <div class="my-info-avatar">
+                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="my-avatar-image">
+                            </div>
+                            <div class="my-info-name">
+                                <p th:text="${username}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-bottom-info">
+                        <p th:text="${bio}"></p>
+                    </div>
+                </div>
+                <hr>
+            </section>
+            <section id="contact-us-section d-flex justify-content-between align-items-center" class="col-9">
+                <div class="profile-section-main m-5">
+                    <div class="stream-posts" th:each="post: ${postsList}">
+                        <div class="stream-post">
+                            <div class="sp-author">
+                                <a href="#" class="sp-author-avatar"><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt=""></a>
+                                <h6 class="sp-author-name" th:text="${username}"></h6></div>
+                            <div class="sp-content">
+                                <div class="sp-info" th:text="${post.regdate}"></div>
+                                <p class="sp-paragraph mb-0" th:text="${post.textContent}">Auk Soldanella plainscraft acetonylidene wolfishness irrecognizant Candolleaceae provision Marsipobranchii arpen Paleoanthropus supersecular inidoneous autoplagiarism palmcrist occamy equestrianism periodontoclasia mucedin overchannel goelism decapsulation pourer zira</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="common/layout :: footer"> </footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+</body>
+</body>
+</html>
