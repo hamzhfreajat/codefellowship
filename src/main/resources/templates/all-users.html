@@ -21,7 +21,8 @@
                         <thead>
                         <tr>
                             <th>Candidate Name</th>
-                            <th class="action text-right">Action</th>
+                            <th class="action text-center">Action</th>
+                            <th class="action text-center">Follow</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,8 +39,11 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <button class="btn-primary"><a th:href="@{'/users/' + ${user.id}}" class="text-white">View</a></button>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn-primary"><a th:href="@{/follow/{id}(id=${user.id})}" class="text-white">Follow</a></button>
                             </td>
                         </tr>
                         </tbody>

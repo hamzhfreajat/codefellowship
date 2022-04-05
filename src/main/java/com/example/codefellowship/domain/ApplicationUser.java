@@ -1,15 +1,20 @@
 package com.example.codefellowship.domain;
 
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
+
+@Data
 @Setter
 @Getter
 @Entity
@@ -28,6 +33,17 @@ public class ApplicationUser implements UserDetails {
     private String bio ;
     @OneToMany(mappedBy = "user")
     private Set<Posts> posts;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_user",
+            joinColumns = {@JoinColumn(name = "from_id")},
+            inverseJoinColumns = {@JoinColumn(name = "to_id")}
+    )
+    public List<ApplicationUser> following;
+
+    @ManyToMany(mappedBy = "following", fetch = FetchType.EAGER)
+    public List<ApplicationUser> followers;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -63,4 +79,13 @@ public class ApplicationUser implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public List<ApplicationUser> getFollowing() {
+        return following;
+    }
+
+    public List<ApplicationUser> getFollowers() {
+        return followers;
+    }
+
 }
